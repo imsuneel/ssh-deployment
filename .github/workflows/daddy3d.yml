@@ -1,4 +1,4 @@
-name: daddy3d
+name: daddy3d Development workflow
 on:
   push:
     branches: [ master ]
@@ -9,9 +9,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: List
-        run: ls -l
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      - name: executing remote ssh commands
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SERVER_SECRET }}
+          port: ${{ secrets.PORT }}
+          script:|
+            cd /var/www/vhosts/dev.daddy3d.com/
+            git pull origin master 
+            ls -l
