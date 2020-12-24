@@ -16,7 +16,7 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SERVER_SECRET }}
           port: ${{ secrets.PORT }}
-          script:|
+          script: |
             cd /var/www/vhosts/dev.daddy3d.com/
             git pull origin master 
             ls -l
